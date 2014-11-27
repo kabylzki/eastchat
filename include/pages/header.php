@@ -1,0 +1,1 @@
+<header id="header"><h1>EastChat</h1><h2>The easiest way to communicate</h2></header>
