@@ -1,4 +1,5 @@
-
+/*
+ * 
 (function poll() {
     setTimeout(function () {
         $.ajax({
@@ -10,8 +11,7 @@
             }, dataType: "json"});
     }, 5000);
 })();
-
-
+*/
 /*
 (function refresh() {
     setTimeout(function () {
@@ -24,7 +24,7 @@
             });
     }, 5000);
 })();*/
-
+/*
 function addMessage() {
     $.ajax({
         url: "servers/server_polling.php",
@@ -51,3 +51,6 @@ $(document).ready(function () {
 
     });
 });
+
+
+*/

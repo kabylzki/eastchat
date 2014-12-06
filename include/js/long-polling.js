@@ -1,87 +1,15 @@
-function Polling() {
-    this.getMessage = function (callback, lastTime) {
-        var t = this;
-        var latest = null;
+http.createServer(function (req, res) {
+   // parse URL
+   var url_parts = url.parse(req.url);
+   console.log(url_parts);
+   if(url_parts.pathname == '/') {
+      // file serving
+      fs.readFile('./index.html', function(err, data) {
+         res.end(data);
+      });
+   } else if(url_parts.pathname.substr(0, 5) == '/poll') {
+     // polling code here
+  }
+}).listen(8080, 'localhost');
+console.log('Server running.');
 
-        
-        $.ajax({
-            'url': 'chatterEngine.php',
-            'type': 'post',
-            'dataType': 'json',
-            'data': {
-                'mode': 'get',
-                'lastTime': lastTime
-            },
-            'timeout': 30000,
-            'cache': false,
-            'success': function (result) {
-                if (result.result) {
-                    callback(result.message);
-                    latest = result.latest;
-                }
-            },
-            'error': function (e) {
-                console.log(e);
-            },
-            'complete': function () {
-                t.getMessage(callback, latest);
-            }
-        });
-    };
-
-    this.postMessage = function (user, text, callback) {
-        $.ajax({
-            'url': 'chatterEngine.php',
-            'type': 'post',
-            'dataType': 'json',
-            'data': {
-                'mode': 'post',
-                'user': user,
-                'text': text
-            },
-            'success': function (result) {
-                callback(result);
-            },
-            'error': function (e) {
-                console.log(e);
-            }
-        });
-    };
-}
-;
-
-var c = new Chatter();
-
-$(document).ready(function () {
-    $('#formPostChat').submit(function (e) {
-        e.preventDefault();
-
-        var user = $('#postUsername');
-        var text = $('#postText');
-        var err = $('#postError');
-
-        c.postMessage(user.val(), text.val(), function (result) {
-            if (result) {
-                text.val('');
-            }
-            err.html(result.output);
-        });
-
-        return false;
-    });
-
-    c.getMessage(function (message) {
-        var chat = $('#chatMessageList').empty();
-
-        for (var i = 0; i < message.length; i++) {
-            chat.append(
-                    '<li class="chatMessage">' +
-                    '		<span class="chatUsername">' + message[i].user + '</span>' +
-                    '		<p class="chatText">' + message[i].text + '</p>' +
-                    '</li>'
-                    );
-        }
-
-        $('#chatMessageList').scrollTop($('#chatMessageList')[0].scrollHeight);
-    });
-});
