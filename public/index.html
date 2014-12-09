@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="HandheldFriendly" content="true">
+        <meta name="MobileOptimized" content="320">  
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href="css/reset.css" rel="stylesheet" type="text/css" />
+        <link href="css/structure.css" rel="stylesheet" type="text/css" />
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+        <link href="css/chat.css" rel="stylesheet" type="text/css" />
+        <script src="js/jquery-2.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+        <title>EastChat - Long-Polling</title>
+    </head>
+    <body>
+        <!-- Conteneur du site -->
+        <section id="container">
+            <header id="header"><h1>EastChat</h1><h2>The easiest way to communicate</h2></header>
+            <nav id="menu">
+                <ul>
+                    <li><a href="index.php" title="Accueil">Accueil</a></li>
+                    <li><a href="push.php" title="Push">Push</a></li>
+                    <li><a href="polling.php" title="Polling" class="active">Polling</a></li>
+                    <li><a href="long-polling.php" title="Long-Polling">Long-Polling</a></li>
+                </ul>
+            </nav>
+            <!-- Contenu de la page -->
+            <article id="content" role="main">
+                <h2 id="titre-h2">Mode : Long-Polling</h2>
+                <h3>Principe : </h3>
+                <p>
+                <ul>
+                    <li>- Le client envoie une requête au serveur</li>
+                    <li>- La page demandée exécute un script Javascript qui requête le serveur</li>
+                    <li>- Le serveur ne répond pas immédiatement mais attend que une nouvelle information soit disponible</li>
+                    <li>- Quand la nouvelle information est disponible, le serveur répond</li>
+                    <li>- Le client reçoit l'information et fait une nouvelle demande au serveur renouvelant le processus</li>
+                </ul>
+
+                <br/>
+
+                <h3>Outils/API : </h3>
+                <p>
+                    Cette méthode a été réalisée grâce à l'API jQuery.
+                </p>
+
+                <br/>
+
+                <div class="chat_wrapper">
+                    <div class="message_box" id="message_box"></div>
+                    <div class="panel">
+                        <input type="text" name="name" id="name" placeholder="Votre nom" maxlength="10" style="width:20%"  />
+                        <input type="text" name="message" id="message" placeholder="Message" maxlength="80" style="width:60%" />
+
+                        <button id="send-btn">Envoyer</button>
+                    </div>
+                </div>
+
+            </article>
+            <footer id="footer"></footer>
+        </section>
+
+        <script>
+            $('#send-btn').click(function () {
+                var myname = $('#name').val();
+                var mymessage = $('#message').val(); // Récupère le message
+                $.ajax({
+                    type: "POST",
+                    url: '/post/',
+                    data: {
+                        name: myname,
+                        message: mymessage
+                    },
+                    cache: false,
+                    timeout: 5000,
+                    success: function (data) {
+
+                    },
+                    error: function (jqXHR, textstatus, errorThrown) {
+                        alert('text status ' + textstatus + ', err ' + errorThrown);
+                    }
+                });
+            });
+            (function poll() {
+                setInterval(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/poll/",
+                        cache: false,
+                        success: function (data) {
+                            //$('#message_box').append("["+data+"]");
+                            var tab_messages = data;
+                            $.each(tab_messages, function (key, val) {
+                                $('#message_box').append("<div><span class='user_name'>" + val.name + "</span> : <span class='user_message'>" + val.message + "</span></div>");
+                            });
+                        }, dataType: "json"});
+                    }, 5000);
+            })();
+        </script>
+    </body>
+</html>
+
