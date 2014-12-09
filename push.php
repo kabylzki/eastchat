@@ -11,7 +11,6 @@ $user_colour = $colours[$rand];
     <head>
         <?php require_once "include/pages/meta.php"; ?>        
         <script src="include/js/jquery-2.0.0.min.js"></script>
-        <script src="include/js/push.js"></script>
         <title>EastChat - Push</title>
     </head>
     <body>
@@ -25,7 +24,6 @@ $user_colour = $colours[$rand];
             <article id="content" role="main">
                 <h2 id="titre-h2">Mode : Push</h2>
                 <h3>Principe : </h3>
-                <p>
                 <ul>
                     <li>- Le client envoie une requête au serveur</li>
                     <li>- Le serveur traite la demande</li>
@@ -35,11 +33,9 @@ $user_colour = $colours[$rand];
                 <br/>
 
                 <h3>Outils/API : </h3>
-                <p>
-                    Cette méthode a été réalisée grâce aux Websocket et à l'API jQuery.
-                </p>
+                <p>Cette méthode a été réalisée grâce aux Websocket et à l'API jQuery.</p>
 
-                <br/><a href="servers/server_push.php" title="Lancer le serveur" target="_blank">Lancer le serveur</a><br/><br/>
+                <br/><a href="server_push.php" title="Lancer le serveur" target="_blank">Lancer le serveur</a><br/><br/>
 
                 <div class="chat_wrapper">
                     <div class="message_box" id="message_box"></div>
@@ -54,5 +50,77 @@ $user_colour = $colours[$rand];
             <!-- Footer -->
             <?php require_once "include/pages/footer.php"; ?>
         </section>
+
+        <script>
+            $(document).ready(function () {
+                //create a new WebSocket object.
+                var wsUri = "ws://localhost:9000/push/server.php";
+                websocket = new WebSocket(wsUri);
+
+                websocket.onopen = function (ev) { // A l'ouverture de la connexion
+                    $('#message_box').append("<div class=\"system_msg\">Connecté!</div>"); // Notification
+                }
+
+                // Récupère l'évènement appuie sur ENTER
+                $('#message').keypress(function (e) {
+                    if (e.keyCode == 13) {
+                        $("#send-btn").click();
+                    }
+                });
+
+                // Au clique sur envoyer
+                $('#send-btn').click(function () {
+                    var mymessage = $('#message').val(); // Récupère le message
+                    var myname = $('#name').val(); // Récupère le nom
+
+                    if (myname == "") { // Si Nom vide
+                        alert("Veuillez saisir un Nom");
+                        return;
+                    }
+                    if (mymessage == "") { // Si message vide
+                        alert("Veuillez entrer un message");
+                        return;
+                    }
+
+                    // Préparation des données en JSON
+                    var msg = {
+                        message: mymessage,
+                        name: myname,
+                        color: $('#color').val()
+                    };
+                    // Convert
+                    websocket.send(JSON.stringify(msg));
+                });
+
+                // A la reception d'un message
+                websocket.onmessage = function (ev) {
+                    var msg = JSON.parse(ev.data); // Envoi des données JSON
+                    var type = msg.type; // Type du message
+                    var umsg = msg.message; // Texte du message
+                    var uname = msg.name; // Nom de l'utilisateur
+                    var ucolor = msg.color; // Couleur du message
+
+                    // Type de message : Utilisateur
+                    if (type == 'usermsg')
+                    {
+                        $('#message_box').append("<div><span class=\"user_name\" style=\"color:#" + ucolor + "\">" + uname + "</span> : <span class=\"user_message\">" + umsg + "</span></div>");
+                    }
+                    if (type == 'system') {
+                        $('#message_box').append("<div class=\"system_msg\">" + umsg + "</div>");
+                    }
+
+                    $('#message').val(''); // Vide le champ message
+                };
+
+                // Gestion des erreurs
+                websocket.onerror = function (ev) {
+                    $('#message_box').append("<div class=\"system_error\">Erreur - " + ev.data + " - Le serveur est-il lancé ?</div>");
+                };
+                // A la fermeture
+                websocket.onclose = function (ev) {
+                    $('#message_box').append("<div class=\"system_msg\">Connection Closed</div>");
+                };
+            });
+        </script>
     </body>
 </html>
