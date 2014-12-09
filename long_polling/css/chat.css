@@ -1,0 +1,21 @@
+.chat_wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    background: #b2bab7;
+    border: 1px solid #999999;
+    padding: 10px;
+    font-size: 12px;
+}
+.chat_wrapper .message_box {
+    background: #FFFFFF;
+    height: 150px;
+    overflow: auto;
+    padding: 10px;
+    border: 1px solid #999999;
+}
+.chat_wrapper .panel input{
+    padding: 2px 2px 2px 5px;
+}
+.system_msg{color: #BDBDBD;font-style: italic;}
+.user_name{font-weight:bold;}
+.user_message{color: #88B6E0;}

@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // Utilisation du dossier /public utile pour CSS, JS et index.html (entry point)
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/long_polling'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({// to support URL-encoded bodies
     extended: true
@@ -15,29 +15,26 @@ app.use(bodyParser.urlencoded({// to support URL-encoded bodies
 // Tableau des messages
 var messages = [];
 
-// sur /post/ On rempli le tableau des messages
-app.post('/post/', function (req, res) {
-    // un objet message avec pour id le nombre d'objets déjà présents + 1
-    var obj_message = {
-        id: messages.length + 1,
-        name: req.body.name,
-        message: req.body.message,
-        color: req.body.color
-    };
-    // pushl'objet dans le tableau
-    messages.push(obj_message);
-    // Retourne le tableau
-    res.send(messages);
-});
-
 // sur /poll/
-// Si last_id est égale à l'id du dernier message du tableau "nothing to pull"
-// Si non on renvoi le tableau des messages
+// Si le mode  de la requête est post on push alors le message dans le tableau
 app.post('/poll/', function (req, res) {
-    if (req.body.last_id == messages.length ) {
-        res.send("nothing to pull");
-    } else {
+    if (req.body.mode === "post") {
+        // un objet message avec pour id le nombre d'objets déjà présents + 1
+        var obj_message = {
+            id: messages.length + 1,
+            name: req.body.name,
+            message: req.body.message,
+            color: req.body.color
+        };
+        // push l'objet dans le tableau
+        messages.push(obj_message);
         res.send(messages);
+        // Si le mode de la requête est poll on envoi les messages au clients
+        // avec un timeout de 10 secondes
+    } else if (req.body.mode === "poll") {
+        setTimeout(function () {
+            res.send(messages);
+        }, 10000);
     }
 });
 

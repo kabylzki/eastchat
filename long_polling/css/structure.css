@@ -1,0 +1,78 @@
+/* Body  */
+body {
+    width: 100%;
+    font-family: 'Ubuntu';
+    background-color: #f5fffb;
+    font-size: 14px;
+}
+
+/* Conteneur du site */
+#container {
+    width: 80%;
+    margin: 10px auto;
+    background-color: white;
+    border: 1px solid lightgrey;
+
+}
+
+/* Header */
+#header {
+    min-height: 50px;
+    padding-top: 10px;
+    border-bottom: 1px solid lightgrey;
+}
+
+#header h1 {
+    margin: 0px;
+    text-align: center;
+    font-size: 22px;
+}
+
+#header h2 {
+    margin: 0px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+#content {
+    padding: 0px 10px;
+}
+
+#menu {
+    text-align: center;
+    padding: 0px 10px;
+    margin: 10px 0px;
+}
+
+#menu ul li {
+    display: inline;
+    margin-left: 50px;
+}
+
+#menu ul li a {
+    padding: 10px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background-color: #b2bab7;
+}
+
+#menu ul li a:hover {
+    color: black;
+    background-color: #9da5a2;
+}
+
+#menu ul li a.active {
+    color: black;
+    background-color: #9da5a2;
+}
+
+/* Footer */
+#footer {
+    min-height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+

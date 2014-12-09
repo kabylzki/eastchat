@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- Meta -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="HandheldFriendly" content="true">
+        <meta name="MobileOptimized" content="320">  
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- CSS -->
+        <link href="css/reset.css" rel="stylesheet" type="text/css" />
+        <link href="css/structure.css" rel="stylesheet" type="text/css" />
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+        <link href="css/chat.css" rel="stylesheet" type="text/css" />
+        <!-- JS -->
+        <script src="js/jquery-2.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+        <title>EastChat - Long Polling</title>
+    </head>
+    <body>
+        <!-- Conteneur du site -->
+        <section id="container">
+            <header id="header"><h1>EastChat</h1><h2>The easiest way to communicate</h2></header>
+            <nav id="menu">
+                <ul>
+                    <li><a href="#" title="Accueil">Accueil</a></li>
+                    <li><a href="#" title="Push">Push</a></li>
+                    <li><a href="#" title="Polling">Polling</a></li>
+                    <li><a href="#" title="Long-Polling" class="active">Long-Polling</a></li>
+                </ul>
+            </nav>
+            <!-- Contenu de la page -->
+            <article id="content" role="main">
+                <h2 id="titre-h2">Mode : Long-Polling</h2>
+                <!-- Principe -->
+                <h3>Principe : </h3>
+                <ul>
+                    <li>- Le client envoie une requête au serveur</li>
+                    <li>- La page demandée exécute un script Javascript qui requête le serveur</li>
+                    <li>- Le serveur ne répond pas immédiatement mais attend que une nouvelle information soit disponible</li>
+                    <li>- Quand la nouvelle information est disponible, le serveur répond</li>
+                    <li>- Le client reçoit l'information et fait une nouvelle demande au serveur renouvelant le processus</li>
+                </ul>
+
+                <br/>
+                <!-- Outils et API -->
+                <h3>Outils/API : </h3>
+                <p>Cette méthode a été réalisée grâce aux l'API jQuery et le framework Express de NodeJs.</p>
+
+                <br/>
+
+                <!-- Conteneur du chat -->
+                <div class="chat_wrapper">
+                    <div class="message_box" id="message_box"></div>
+                    <div class="panel">
+                        <input type="text" name="name" id="name" placeholder="Votre nom" maxlength="10" style="width:20%"  />
+                        <input type="text" name="message" id="message" placeholder="Message" maxlength="80" style="width:60%" />
+
+                        <button id="send-btn">Envoyer</button>
+                    </div>
+                </div>
+
+            </article>
+            <!-- Footer -->
+            <footer id="footer"></footer>
+        </section>
+
+        <script>
+            // id du dernier message reçu
+            var last_id_pulled = 0;
+            // le temps entre chaque requête au serveur
+            var poll_time = 10000;
+            // tableau comprenant tous les pseudo utilisés
+            var tab_name = [];
+            // Variable nous permettant de savoir si un pseudo est utilisé ou non
+            name_used = false;
+
+            // Permet d'entrée un pseudo
+            document.getElementById("name").disabled = false;
+            // Donne le focus au champ message (user friendly)
+            document.getElementById("message").focus();
+
+            // Couleurs possible pour les messages 
+            var colors = ['007AFF', 'FF7000', 'FF7000', '15E25F', 'CFC700', 'CFC700', 'CF1100', 'CF00BE', 'F00', '000'];
+            // Couleur aléatoire pour l'utilisateur
+            user_color = colors[Math.floor(Math.random() * colors.length)];
+
+            // Récupère l'évènement appuie sur ENTER
+            // effectue l'évènement clique sur #send-btn (user friendly)
+            $('#message').keypress(function (e) {
+                if (e.keyCode == 13) {
+                    $("#send-btn").click();
+                }
+            });
+
+            // Au clique sur envoyé
+            $('#send-btn').click(function () {
+                // Récupération des champs
+                var myname = $('#name').val();
+                var mymessage = $('#message').val();
+
+                // si le champ est déjà vérouillé
+                // on ne parcours pas le tableau à la recherche des pseudo utilisés
+                if (document.getElementById("name").disabled === false) {
+                    $.each(tab_name, function (key, val) {
+                        if (myname === val) {
+                            name_used = true;
+                        }
+                    });
+                }
+
+                // si le pseudo n'est pas utilisé
+                if (name_used === false) {
+                    // Requête ajax sur l'url /post/
+                    $.ajax({
+                        type: "POST",
+                        url: '/poll/',
+                        // Données envoyées au serveur
+                        data: {
+                            mode: "post",
+                            name: myname,
+                            message: mymessage,
+                            color: user_color
+                        },
+                        cache: false,
+                        timeout: 30000,
+                        // Si ok 
+                        success: function (data) {
+                            $('#message').val(''); // Vide le champ message 
+                            // Redonne le focus au champ message (user friendly)
+                            document.getElementById("message").focus();
+                            // au premier message on bloque la modification du pseudo
+                            if (document.getElementById("message").disabled === false) {
+                                document.getElementById("name").disabled = true;
+                            }
+                        },
+                        // Message de l'erreur si il y en a une
+                        error: function (jqXHR, textstatus, errorThrown) {
+                            alert('text status ' + textstatus + ', err ' + errorThrown);
+                        }
+                    });
+                } else {
+                    alert("pseudo déjà utilisé");
+                    name_used = false;
+                }
+            });
+
+            // Fonction de long polling
+            function poll() {
+                // Réquête ajax sur l'url /poll/
+                $.ajax({
+                    type: "POST",
+                    url: "/poll/",
+                    cache: false,
+                    timeout: 30000,
+                    // Envoi l'id du dernier message reçu au serveur
+                    data: {
+                        mode: "poll",
+                        last_id: last_id_pulled
+                    },
+                    // Si ok on affiche le résultat reçu dans le chat
+                    success: function (data) {
+                        var tab_messages = data;
+                        // Formate le message affiché
+                        $.each(tab_messages, function (key, val) {
+                            tab_name.push(val.name);
+                            if (last_id_pulled < val.id) {
+                                $('#message_box').append("<div><span class='user_name'>" + val.name + "</span> : <span class='user_message' style='color:#" + val.color + "'>" + val.message + "</span></div>");
+                            }
+                        });
+
+                        // met à jour le dernier ID reçu
+                        last_id_pulled = tab_messages.length;
+                        // Relance une nouvelle requête au serveur
+                        poll();
+                        // le type des données est en Json
+                    }, dataType: "json"});
+            }
+            
+            poll();
+        </script>
+    </body>
+</html>
+
