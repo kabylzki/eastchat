@@ -67,10 +67,16 @@
             var last_id_pulled = 0;
             // le temps entre chaque requête au serveur
             var poll_time = 5000;
+            // tableau comprenant tous les pseudo utilisés
+            var tab_name = [];
+            // Variable nous permettant de savoir si un pseudo est utilisé ou non
+            name_used = false;
+
             // Permet d'entrée un pseudo
             document.getElementById("name").disabled = false;
             // Donne le focus au champ message (user friendly)
             document.getElementById("message").focus();
+
             // Couleurs possible pour les messages 
             var colors = ['007AFF', 'FF7000', 'FF7000', '15E25F', 'CFC700', 'CFC700', 'CF1100', 'CF00BE', 'F00', '000'];
             // Couleur aléatoire pour l'utilisateur
@@ -90,34 +96,50 @@
                 var myname = $('#name').val();
                 var mymessage = $('#message').val();
 
-                // Requête ajax sur l'url /post/
-                $.ajax({
-                    type: "POST",
-                    url: '/post/',
-                    // Données envoyées au serveur
-                    data: {
-                        name: myname,
-                        message: mymessage,
-                        color: user_color
-                    },
-                    cache: false,
-                    timeout: 5000,
-                    // Si ok 
-                    success: function (data) {
-                        console.log("Message OK");
-                        $('#message').val(''); // Vide le champ message 
-                        // Redonne le focus au champ message (user friendly)
-                        document.getElementById("message").focus();
-                        // au premier message on bloque la modification du pseudo
-                        if (document.getElementById("message").disabled === false) {
-                            document.getElementById("name").disabled = true;
+                // si le champ est déjà vérouillé
+                // on ne parcours pas le tableau à la recherche des pseudo utilisés
+                if (document.getElementById("name").disabled === false) {
+                    $.each(tab_name, function (key, val) {
+                        if (myname === val) {
+                            name_used = true;
                         }
-                    },
-                    // Message de l'erreur si il y en a une
-                    error: function (jqXHR, textstatus, errorThrown) {
-                        alert('text status ' + textstatus + ', err ' + errorThrown);
-                    }
-                });
+                    });
+                }
+
+                // si le pseudo n'est pas utilisé
+                if (name_used === false) {
+                    // Requête ajax sur l'url /post/
+                    $.ajax({
+                        type: "POST",
+                        url: '/post/',
+                        // Données envoyées au serveur
+                        data: {
+                            name: myname,
+                            message: mymessage,
+                            color: user_color
+                        },
+                        cache: false,
+                        timeout: 5000,
+                        // Si ok 
+                        success: function (data) {
+                            console.log("Message OK");
+                            $('#message').val(''); // Vide le champ message 
+                            // Redonne le focus au champ message (user friendly)
+                            document.getElementById("message").focus();
+                            // au premier message on bloque la modification du pseudo
+                            if (document.getElementById("message").disabled === false) {
+                                document.getElementById("name").disabled = true;
+                            }
+                        },
+                        // Message de l'erreur si il y en a une
+                        error: function (jqXHR, textstatus, errorThrown) {
+                            alert('text status ' + textstatus + ', err ' + errorThrown);
+                        }
+                    });
+                } else {
+                    alert("pseudo déjà utilisé");
+                    name_used = false;
+                }
             });
 
             // Fonction de polling
@@ -136,6 +158,7 @@
                         var tab_messages = data;
                         // Formate le message affiché
                         $.each(tab_messages, function (key, val) {
+                            tab_name.push(val.name);
                             if (last_id_pulled < val.id) {
                                 $('#message_box').append("<div><span class='user_name'>" + val.name + "</span> : <span class='user_message' style='color:#" + val.color + "'>" + val.message + "</span></div>");
                             }

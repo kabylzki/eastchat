@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // Utilisation du dossier /public utile pour CSS, JS et index.html (entry point)
-app.use(express.static(__dirname + '/polling'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({// to support URL-encoded bodies
     extended: true
