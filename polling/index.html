@@ -160,7 +160,7 @@
                         $.each(tab_messages, function (key, val) {
                             tab_name.push(val.name);
                             if (last_id_pulled < val.id) {
-                                $('#message_box').append("<div><span class='user_name'>" + val.name + "</span> : <span class='user_message' style='color:#" + val.color + "'>" + val.message + "</span></div>");
+                                $('#message_box').append("<div>[" + val.time + "] <span class='user_name'>" + val.name + "</span> : <span class='user_message' style='color:#" + val.color + "'>" + val.message + "</span></div>");
                             }
                         });
 

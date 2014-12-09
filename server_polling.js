@@ -2,6 +2,9 @@
 var express = require('express');
 // Body parser : utile pour la récupération des paramètres d'une requête
 var bodyParser = require('body-parser');
+// Utilisé pour afficher l'heure du message
+require('console-stamp')(console, '[HH:MM:ss]');
+
 // Notre app
 var app = express();
 
@@ -17,12 +20,18 @@ var messages = [];
 
 // sur /post/ On rempli le tableau des messages
 app.post('/post/', function (req, res) {
+    
+    // Récupération de l'heure du message
+    var df = require('console-stamp/node_modules/dateformat');
+    var time = df(new Date(), 'HH:MM:ss');
+    
     // un objet message avec pour id le nombre d'objets déjà présents + 1
     var obj_message = {
         id: messages.length + 1,
         name: req.body.name,
         message: req.body.message,
-        color: req.body.color
+        color: req.body.color,
+        time: time
     };
     // pushl'objet dans le tableau
     messages.push(obj_message);
