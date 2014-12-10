@@ -10,8 +10,8 @@
         <link href="css/reset.css" rel="stylesheet" type="text/css" />
         <link href="css/structure.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <link href="css/responsive.css" rel="stylesheet" type="text/css" />
         <link href="css/chat.css" rel="stylesheet" type="text/css" />
+        <link href="css/responsive.css" rel="stylesheet" type="text/css" />
         <!-- JS -->
         <script src="js/jquery-2.0.0.min.js" type="text/javascript" charset="utf-8"></script>
         <title>EastChat - Polling</title>
@@ -22,15 +22,12 @@
             <header id="header"><h1>EastChat</h1><h2>The easiest way to communicate</h2></header>
             <nav id="menu">
                 <ul>
-                    <li><a href="#" title="Accueil">Accueil</a></li>
-                    <li><a href="#" title="Push">Push</a></li>
                     <li><a href="#" title="Polling" class="active">Polling</a></li>
-                    <li><a href="#" title="Long-Polling">Long-Polling</a></li>
                 </ul>
             </nav>
             <!-- Contenu de la page -->
             <article id="content" role="main">
-                <h2 id="titre-h2">Mode : Long-Polling</h2>
+                <h2 id="titre-h2">Mode : Polling</h2>
                 <!-- Principe -->
                 <h3>Principe : </h3>
                 <ul>
@@ -50,8 +47,8 @@
                 <div class="chat_wrapper">
                     <div class="message_box" id="message_box"></div>
                     <div class="panel">
-                        <input type="text" name="name" id="name" placeholder="Votre nom" maxlength="10" style="width:20%"  />
-                        <input type="text" name="message" id="message" placeholder="Message" maxlength="80" style="width:60%" />
+                        <input type="text" name="name" id="name" placeholder="Votre nom" maxlength="10" />
+                        <input type="text" name="message" id="message" placeholder="Message" maxlength="80"/>
 
                         <button id="send-btn">Envoyer</button>
                     </div>

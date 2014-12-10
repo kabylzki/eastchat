@@ -23,4 +23,17 @@
         color: white;
         background-color: #b2bab7;
     }
+    
+    .chat_wrapper .panel {
+        text-align: right;
+    }
+    .chat_wrapper .panel input#name {
+        float: left;
+        width: 20%;
+    }
+    
+    .chat_wrapper .panel input#message {
+        float: right;
+        width: 73%;
+    }
 }

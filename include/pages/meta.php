@@ -5,5 +5,5 @@
 <link href="include/css/reset.css" rel="stylesheet" type="text/css" />
 <link href="include/css/structure.css" rel="stylesheet" type="text/css" />
 <link href="include/css/style.css" rel="stylesheet" type="text/css" />
-<link href="include/css/responsive.css" rel="stylesheet" type="text/css" />
 <link href="include/css/chat.css" rel="stylesheet" type="text/css" />
+<link href="include/css/responsive.css" rel="stylesheet" type="text/css" />
