@@ -8,45 +8,45 @@
 \red255\green255\blue255;
 \red255\green255\blue255;}
 {\stylesheet
-{\s6\fi-428\li720\sbasedon28\snext28 Contents 1;}
-{\s7\fi-428\li1440\sbasedon28\snext28 Contents 2;}
-{\s1\fi-428\li720 Arrowhead List;}
-{\s27\fi-428\li720\sbasedon28 Lower Roman List;}
+{\s6\fi-427\li720\sbasedon28\snext28 Contents 1;}
+{\s7\fi-427\li1440\sbasedon28\snext28 Contents 2;}
+{\s1\fi-427\li720 Arrowhead List;}
+{\s27\fi-427\li720\sbasedon28 Lower Roman List;}
 {\s29\tx431\sbasedon20\snext28 Numbered Heading 1;}
 {\s30\tx431\sbasedon21\snext28 Numbered Heading 2;}
-{\s12\fi-428\li720 Diamond List;}
-{\s9\fi-428\li2880\sbasedon28\snext28 Contents 4;}
-{\s8\fi-428\li2160\sbasedon28\snext28 Contents 3;}
+{\s12\fi-427\li720 Diamond List;}
+{\s9\fi-427\li2880\sbasedon28\snext28 Contents 4;}
+{\s8\fi-427\li2160\sbasedon28\snext28 Contents 3;}
 {\s31\tx431\sbasedon22\snext28 Numbered Heading 3;}
-{\s32\fi-428\li720 Numbered List;}
+{\s32\fi-427\li720 Numbered List;}
 {\s15\sbasedon28 Endnote Text;}
 {\*\cs14\fs20\super Endnote Reference;}
-{\s4\fi-428\li720 Bullet List;}
+{\s4\fi-427\li720 Bullet List;}
 {\s5\tx1584\sbasedon29\snext28 Chapter Heading;}
-{\s35\fi-428\li720 Square List;}
-{\s11\fi-428\li720 Dashed List;}
+{\s35\fi-427\li720 Square List;}
+{\s11\fi-427\li720 Dashed List;}
 {\s22\sb440\sa60\f1\fs24\b\sbasedon28\snext28 Heading 3;}
-{\s37\fi-428\li720 Tick List;}
-{\s24\fi-428\li720 Heart List;}
-{\s40\fi-428\li720\sbasedon32 Upper Roman List;}
-{\s39\fi-428\li720\sbasedon32 Upper Case List;}
+{\s37\fi-427\li720 Tick List;}
+{\s24\fi-427\li720 Heart List;}
+{\s40\fi-427\li720\sbasedon32 Upper Roman List;}
+{\s39\fi-427\li720\sbasedon32 Upper Case List;}
 {\s16\fi-288\li288\fs20\sbasedon28 Footnote;}
-{\s19\fi-428\li720 Hand List;}
+{\s19\fi-427\li720 Hand List;}
 {\s18\fs20\sbasedon28 Footnote Text;}
 {\s20\sb440\sa60\f1\fs34\b\sbasedon28\snext28 Heading 1;}
 {\s21\sb440\sa60\f1\fs28\b\sbasedon28\snext28 Heading 2;}
 {\s10\qc\sb240\sa117\f1\fs32\b\sbasedon28\snext28 Contents Header;}
 {\s23\sb440\sa60\f1\fs24\b\sbasedon28\snext28 Heading 4;}
 {\s28\f0\fs24 Normal;}
-{\s26\fi-428\li720\sbasedon32 Lower Case List;}
+{\s26\fi-427\li720\sbasedon32 Lower Case List;}
 {\s2\li1440\ri1440\sa117\sbasedon28 Block Text;}
 {\s33\f2\sbasedon28 Plain Text;}
 {\s34\tx1584\sbasedon29\snext28 Section Heading;}
-{\s25\fi-428\li720 Implies List;}
-{\s3\fi-428\li720 Box List;}
-{\s36\fi-428\li720 Star List;}
+{\s25\fi-427\li720 Implies List;}
+{\s3\fi-427\li720 Box List;}
+{\s36\fi-427\li720 Star List;}
 {\*\cs17\fs20\super Footnote Reference;}
-{\s38\fi-428\li720 Triangle List;}
+{\s38\fi-427\li720 Triangle List;}
 {\s13\fi-288\li288\sbasedon28 Endnote;}}
 \kerning0\cf0\ftnbj\fet2\ftnstart1\ftnnar\aftnnar\ftnstart1\aftnstart1\aenddoc\revprop3{\*\rdf}{\info\uc1}\deftab720\viewkind1\paperw11905\paperh16837\margl1440\margr1440\widowctrl
 \sectd\sbknone\colsx360\headery0\footery0\pgncont\ltrsect
@@ -68,7 +68,7 @@
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\abinodiroverride\ltrch En mode Polling, le client fait une requ\'eate sur le serveur tous les x temps. Dans le cadre du chat, toutes les 5 secondes, le client demande au serveurs les messages qui ont \'e9t\'e9 post\'e9s.}{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\b\lang1036{\*\listtag0}\abinodiroverride\ltrch Mode Long-Polling}{\s28\f0\fs24\b\lang1036{\*\listtag0}\par}
-\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\abinodiroverride\ltrch Dans ce mode, le client envoie des requ\'eates au serveur qui lui r\'e9pond une fois le timeout d\'e9fini \'e9coul\'e9. La connexion au serveur est maintenue, et toutes les 10 secondes le serveur renvoie les donn\'e9es qu\uc1\u8217\'92il poss\'e8de.}{\s28\f0\fs24\lang1036{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\abinodiroverride\ltrch Dans ce mode, le client envoie des requ\'eates au serveur qui lui r\'e9pond une fois le timeout d\'e9fini \'e9coul\'e9. La connexion au serveur est maintenue, et toutes les 10 secondes le serveur renvoie les donn\'e9es qu\uc1\u8217\'92il poss\'e8de. Suite \'e0 la r\'e9ponse, un autre process est lanc\'e9 qui r\'e9pondra 10 secondes plus tard.}{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs32\b\ul\lang1036{\*\listtag0}\abinodiroverride\ltrch Description des choix informatique}{\s28\f0\fs32\b\ul\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs32\b\ul\lang1036{\*\listtag0}\par}
@@ -83,13 +83,14 @@
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\b\lang1036{\*\listtag0}\abinodiroverride\ltrch PHP/WebSocket: }{\s28\f0\fs24\lang1036{\*\listtag0}Le PHP a \'e9t\'e9 utilis\'e9 pour le c\'f4t\'e9 serveur du mode r\'e9seau Push. Idem que pour un serveur NodeJs, le serveur \'e9coute un port (en continu) et r\'e9pond \'abdirectement\'bb au requ\'eates qui lui sont envoy\'e9es.}{\s28\f0\fs24\b\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
-\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs32\b\ul\lang1036{\*\listtag0}\par}
-\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs32\b\ul\lang1036{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs32\b\ul\lang1036{\*\listtag0}\abinodiroverride\ltrch Conclusions}{\s28\f0\fs32\b\ul\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs32\b\ul\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\abinodiroverride\ltrch Le projet de messagerie nous a appris le fonctionnement des 3 modes r\'e9seaux demand\'e9s. En effet, les communications entre clients et serveurs sont tr\'e8s importantes sur le web et doivent \'eatre comprises.}{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
-\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\abinodiroverride\ltrch Chaque application correspond plus ou moins \'e0 un mode r\'e9seau. Pour une messagerie de type chat, l\uc1\u8217\'92utilisation des sockets pour la transmission des messages et la gestion des clients connect\'e9s semble \'eatre la plus appropri\'e9e. Le temps r\'e9el dans une communication par message est important. Les autres modes ne permettent pas cette communication directe. Le polling est utile pour rafra\'eechir les donn\'e9es d\uc1\u8217\'92une page qui n\uc1\u8217\'92est a priori pas destin\'e9e \'e0 \'eatre modifi\'e9e souvent (exemple: }{\s28\f0\fs24\lang1036{\*\listtag0}rafra\'eechi}{\s28\f0\fs24\lang1036{\*\listtag0}ssement des scores d\uc1\u8217\'92un match de foot qui se d\'e9roule en direct).}{\s28\f0\fs24\lang1036{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\abinodiroverride\ltrch Chaque application correspond plus ou moins \'e0 un mode r\'e9seau. Pour une messagerie de type chat, l\uc1\u8217\'92utilisation des sockets pour la transmission des messages et la gestion des clients connect\'e9s semble \'eatre la plus appropri\'e9e. Le notion de \'abtemps r\'e9el\'bb dans une communication par message est primordiale. Les autres modes ne permettent pas cette communication directe. Le polling est utile pour rafra\'eechir les donn\'e9es d\uc1\u8217\'92une page qui n\uc1\u8217\'92est \'e0 priori pas destin\'e9e \'e0 \'eatre modifi\'e9e souvent (exemple: rafra\'eechissement des scores d\uc1\u8217\'92un match de foot qui se d\'e9roule en direct).}{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\abinodiroverride\ltrch Les outils et m\'e9thodes pour parvenir \'e0 ce besoin sont multiples, mais le fonctionnement et les donn\'e9es qui transitent sont les m\'eames.}{\s28\f0\fs24\lang1036{\*\listtag0}\par}
 \pard\plain\ltrpar\ql\s28\sl240\slmult1\itap0{\s28\f0\fs24\lang1036{\*\listtag0}\par}
