@@ -37,13 +37,13 @@ app.post('/poll/', function (req, res) {
         };
         // push l'objet dans le tableau
         messages.push(obj_message);
-        res.send("ok");
+        res.send(obj_message);
         // Si le mode de la requête est poll on envoi les messages au clients
         // avec un timeout de 10 secondes
     } else if (req.body.mode === "poll") {
         setTimeout(function () {
             res.send(messages);
-        }, 10000);
+        }, 5000);
     }
 });
 
